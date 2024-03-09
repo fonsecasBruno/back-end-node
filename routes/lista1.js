@@ -55,4 +55,53 @@ router.post('/ex2', function(req, res){
     }
 })
 
+router.post('/ex3', function(req, res){
+    /* 
+        3. Escreva um script para ler o salário mensal atual de um funcionário e opercentual de reajuste. Calcular e escrever o valor do novo salário.
+    */
+
+    const{salario, percentual} = req.body
+    
+    const aumento = (percentual / 100) * salario
+
+    const salariofinal = Number(salario) + Number(aumento)
+    
+    res.json({salariofinal})
+    
+})
+
+router.post('/ex4', function(req, res){
+
+    /*
+        4. O custo de um carro novo ao consumidor é a soma do custo de fábrica com a porcentagem do distribuidor e dos impostos (aplicados ao custo de fábrica). Supondo que o percentual do distribuidor seja de 28% e os impostos de 45%, escrever um script para ler o custo de fábrica de um carro, calcular e escrever o custo final ao consumidor.
+    */
+
+    const carro = Number(req.body.carro);
+
+    const percentualdistribuidor = ( 28 / 100 ) * carro;
+    
+    const percentualimpostos = ( 45 / 100 ) * carro;
+    
+    const valorfinal = carro + percentualdistribuidor + percentualimpostos;
+    
+    res.json({valorfinal})
+})
+
+router.post('/ex5', function(req, res){
+
+    /* 
+        5. O custo de um carro novo ao consumidor é a soma do custo de fábrica com a porcentagem do distribuidor e dos impostos (aplicados ao custo de fábrica). Escreva um script para ler o custo de fábrica de um carro, a porcentagem do distribuidor e o imposto, e calcular e escrever o custo final ao consumidor
+    */
+
+        const{carro, distribuidor, imposto} = req.body
+    
+        const valordistribuidor = (distribuidor / 100) * carro;
+        const valorimposto = (imposto / 100) * carro; 
+        const valorfinal = Number(carro) + Number(valordistribuidor) + Number(valorimposto);
+
+    res.json({valorfinal})
+})
+
+
+
 module.exports = router
