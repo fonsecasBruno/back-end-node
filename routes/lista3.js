@@ -1,10 +1,6 @@
 const express = require('express')
 const router = express.Router()
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 53d7b19e1a1a18b3fd82f65529728b226529f128
 router.post('/ex1', function(req, res){
 
     /*
@@ -79,22 +75,17 @@ router.post('/ex4', function(req, res){
 
     const{salarioMinimo, horasTrabalhadas, dependentes, horasExtras} = req.body
 
-<<<<<<< HEAD
     const valorHora = salarioMinimo * (1/10)
-=======
-    const valorHora = salarioMinimo * 20 / 100
->>>>>>> 53d7b19e1a1a18b3fd82f65529728b226529f128
+
     const salarioBruto = Number(valorHora * horasTrabalhadas) + Number(horasExtras * (Number(valorHora) + (valorHora * 50 / 100))) + (dependentes * 32)
 
     let salarioLiquido;
 
     if(salarioBruto >= 5000){
         salarioLiquido = salarioBruto - (salarioBruto * 20 / 100)
-<<<<<<< HEAD
+
     } else if(salarioBruto >= 2000) {
-=======
-    } else if(salario >= 2000) {
->>>>>>> 53d7b19e1a1a18b3fd82f65529728b226529f128
+
         salarioLiquido = salarioBruto - (salarioBruto * 10 / 100)
     } else {
         salarioLiquido = salarioBruto
