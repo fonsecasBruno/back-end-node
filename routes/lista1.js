@@ -3,6 +3,10 @@ const router = express.Router()
 
 router.post('/ex1', function(req, res){
 
+    /*
+        1. Faça um Programa que receba quatro notas de um aluno, calcule e imprima a média aritmética das notas e a mensagem de aprovado para média superior ou igual a 7.0 ou a mensagem de reprovado para média inferior a 7.0. a. Bônus: nenhuma nota pode passar de 10.
+    */
+
     const{n1, n2, n3, n4} = req.body
 
     const media = (Number(n1) + Number(n2) + Number(n3) + Number(n4)) / 4
@@ -23,6 +27,11 @@ router.post('/ex1', function(req, res){
 })
 
 router.post('/ex2', function(req, res){
+
+    /* 
+        Escreva um script para ler o número total de eleitores de um município, o número de votos brancos, nulos e validos. Calcular e escrever o percentual que cada um representa em relação ao total de eleitoresa. Bonus: A soma dos números não pode passar o total de eleitores.
+    */
+
     const{total, brancos, nulos, validos} = req.body
     //const requisicoes = req.body
 
@@ -103,5 +112,66 @@ router.post('/ex5', function(req, res){
 })
 
 
+router.post('/ex6', function(req, res){
+    /*
+    Uma revendedora de carros usados paga a seus funcionários vendedores um salário fixo por mês, mais uma comissão também fixa para cada carro vendido e mais 5% do valor das vendas por ele efetuadas. Escrever um script que leia o número de carros por ele vendidos, o valor total de suas vendas, o salário fixo e o valor que ele recebe por carro vendido. Calcule e escreva o salário final do vendedor.
+    */
+
+    const{fixo, carros, comissao, vendas} = req.body
+
+    const comissaocarros = carros * comissao
+    const comissaovendas = ( 5 / 100 ) * vendas
+
+    const total = Number(fixo) + Number(comissaocarros) + Number(comissaovendas)
+
+    res.json({total})
+})
+
+
+router.post('/ex7', function(req, res){
+
+    /*
+        Faça um script que leia duas notas de um aluno, calcule e escreva a média final deste aluno. Considerar que a média é ponderada e que o peso das notas é 4 e 6.
+    */
+
+    const{n1, n2} = req.body
+    
+    const mediaponderada = (n1 * 4 + n2 * 6) / 10
+    
+    res.json({mediaponderada})
+})
+
+
+router.post('/ex8', function(req, res){
+    
+    /*
+        Faça um script que determine o volume de uma caixa d’água cilíndrica, sendo que o raio e a altura devem ser fornecidos.
+    */
+
+    const{raio, altura} = req.body
+    
+    const raioquadrado = raio * raio;
+    const pi = 3.14;
+    const volume = pi * raioquadrado * altura;
+
+    res.json({volume})
+})
+
+
+router.post('/ex9', function(req, res){
+    
+    /*
+        Faça um script para somar dois números e multiplicar o resultado pelo primeiro número.
+    */
+
+    const{n1, n2} = req.body
+    
+    const soma = Number(n1) + Number(n2);
+    
+    const final = soma * n1;
+    
+
+    res.json({final})
+})
 
 module.exports = router
