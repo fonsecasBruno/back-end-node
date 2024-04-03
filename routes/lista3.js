@@ -102,4 +102,98 @@ router.post('/ex4', function(req, res){
     res.json({salarioFinal})
 })
 
+
+router.post('/ex5', function(req, res){
+    /* 
+    Construa um programa que leia o número de identificação do aluno, as 3 notas obtidas pelo aluno nas 3 provas e a média dos exercícios que fazem parte da avaliação.
+    */
+
+    const{idAluno, n1, n2, n3, me} = req.body
+
+    const mediaAproveitamento = ((n1 + n2 * 2 + n3 * 3 + me) / 7);
+    let conceito;
+    let status;
+
+    if (mediaAproveitamento >= 9){
+        conceito = 'A';
+        status = 'Aprovado';
+    } else if (mediaAproveitamento >= 7.5){
+        conceito = 'B';
+        status = 'Aprovado';
+    } else if (mediaAproveitamento >= 6) {
+        conceito = 'C';
+        status = 'Aprovado';
+    } else if (mediaAproveitamento >= 4) {
+        conceito = 'D';
+        status = 'Reprovado';
+    } else {
+        conceito = 'E';
+        status = 'Reprovado';
+    }
+
+    const mensagem = `O aluno ${idAluno} teve uma media de aproveitamento de ${mediaAproveitamento}, alcançou o conceito ${conceito} e está  ${status}!`
+
+    res.json({mensagem})
+})
+
+
+router.post('/ex6', function(req, res){
+    
+    /*
+        Construa um script que calcule o peso ideal de uma pessoa. Dados de entrada: altura e sexo.
+    */
+
+    const{altura, sexo } = req.body
+    let pesoIdeal;
+
+    if(sexo === 'masculino'){
+        pesoIdeal = (72.7 * altura) - 58
+    } else if( sexo === 'feminino'){
+        pesoIdeal = (62.1 * altura) - 44.7
+    } else {
+        console.log('Erro')
+    }
+
+    res.json({pesoIdeal})
+})
+
+
+router.post('/ex7', function(req, res){
+    
+    const{n1, n2, n3} = req.body
+    let numeros = [n1, n2, n3];
+    numeros.sort((n1, n2) => n2 - n1);
+    const soma = Number(numeros[0]) + Number(numeros[1]);
+
+    res.json({soma})
+})
+
+
+router.post('/ex8', function(req, res){
+
+    const{salario, codigoCargo} = req.body
+    let aumento;
+
+    switch (codigoCargo) {
+        case 101:
+            aumento = 0.05
+            break;
+        case 102:
+            aumento = 0.075
+            break;
+        case 103: 
+            aumento = 0.10;
+            break;
+        default:
+            aumento = 0.15
+    }
+
+    const novoSalario = Number(salario) + (salario * aumento)
+    const diferenca = novoSalario - salario;
+
+    const mensagem = `O salario do funcionario de cargo ${codigoCargo} recebeu um aumento de ${aumento}, tendo um salario final de ${novoSalario} e uma diferença de ${diferenca} do antigo salario`
+    
+    res.json({mensagem})
+})
+
 module.exports = router
